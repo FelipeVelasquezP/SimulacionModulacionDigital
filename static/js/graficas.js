@@ -1,7 +1,7 @@
 
 //Grafica de diagrama de pulzos de assci
-function pintarGraficaAscci(cod) {
-    var save = datosGraficaAscci(cod);
+function pintarGraficaAscci(cod,tb) {
+    var save = datosGraficaAscci(cod,tb);
     var traceHVH = {
         x: save[1].ejeX,
         y: save[0].binario,
@@ -16,8 +16,20 @@ function pintarGraficaAscci(cod) {
     var data = [traceHVH];
     var layout = {
         title: 'Diagrama de Pulsos del codigo ASSCI',
-        yaxis: {
+        xaxis: {
+            title: 'Tiempo[s]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            },
             rangemode: 'tozero'
+        },
+        yaxis: {
+            title: 'Amplitud[V]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            }
         }
     };
 
@@ -101,3 +113,53 @@ function pintarEspectroFrecuencias(m, vp) {
 
 }
 
+
+function pintarGraficaSeñalModuladaASK(cod,Ap,fp,tb) {
+    var save = traerdatosASK(cod,tb,Ap,fp)
+
+    var datos = {
+        x: save[0].x,
+        y: save[1].y,
+        mode: 'lines'
+    };
+    var data = [datos];
+    var layout = {
+        title: 'Señal Modulada en ASK',
+        xaxis: {
+            title: 'Tiempo [s]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            },
+            rangemode: 'tozero'
+        },
+        yaxis: {
+            title: 'Vc [V]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            }
+        }
+    };
+    Plotly.newPlot('graficaModuladaASK', data, layout);
+}
+
+function pintarGraficaSeñalModuladaFSK() {
+    
+}
+
+function pintarGraficaSeñalModuladaBPSK() {
+    
+}
+
+function pintarGraficaSeñalModuladaQPSK() {
+    
+}
+
+function pintarDiagramaConstelacionBPSK() {
+    
+}
+
+function pintarDiagramaConstelacionQPSK() {
+    
+}

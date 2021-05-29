@@ -1,15 +1,17 @@
 // Funcion que trae los valores a graficar en el diagrama de pulsos
-function datosGraficaAscci(cod) {
+function datosGraficaAscci(cod,tb) {
     let decimal = cod.charCodeAt(0);
     bin=decimal.toString(2);
     binario=[];
     ejeX=[];
-    aux=1;
+    aux=0;
     for (let i = 0; i < bin.length; i++) {
         binario[i]=parseInt(bin[i]);
-        ejeX[i]=i+(i+1)
+        ejeX[i]=aux;
+        aux+=tb;
     }
     var dat=[{binario},{ejeX}]
+    console.log(dat)
     return dat;
 }
 
@@ -28,6 +30,44 @@ function traerValores(aux, A, f, df, faux) {
         } else {
             c = A * Math.cos((2 * Math.PI * f) * a + df * Math.cos(2 * Math.PI * faux * a))
         }
+        x.push(a)
+        y.push(c)
+        a += 0.001;
+    }
+    valores = [{ x }, { y }]
+    return valores;
+}
+
+function datosASK(cod,tb) {
+    var bin=[];
+    var save=datosGraficaAscci(cod,tb)[0].binario;
+    for (let i = 0; i < save.length; i++) {
+       if (save[i]) {
+           bin[i]=1
+       } else {
+         bin[i]=-1
+       }
+    }
+    return bin;
+}
+
+
+function traerdatosASK(cod,tb,Ap,fp) {
+    var save=datosASK(cod,tb);
+    var x = [];
+    var y = [];
+    a = 0;
+    b=0;
+    len=7000;
+    pru=len/save.length;
+    auxpru=pru;
+    console.log(save.length)
+    for (let i = 0; i < len; i++) {
+        if (i==pru) {
+            pru+=auxpru;
+            b++
+        }
+        c=(1+save[b])*((Ap/2)*Math.cos(2*Math.PI*fp*a));
         x.push(a)
         y.push(c)
         a += 0.001;
