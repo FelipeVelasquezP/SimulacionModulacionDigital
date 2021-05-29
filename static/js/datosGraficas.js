@@ -1,5 +1,5 @@
-
-function setGraficaAscci(cod) {
+// Funcion que trae los valores a graficar en el diagrama de pulsos
+function datosGraficaAscci(cod) {
     let decimal = cod.charCodeAt(0);
     bin=decimal.toString(2);
     binario=[];
@@ -9,11 +9,11 @@ function setGraficaAscci(cod) {
         binario[i]=parseInt(bin[i]);
         ejeX[i]=i+(i+1)
     }
-    console.log(binario,ejeX)
-    pintarGraficaAscci(binario,ejeX)
+    var dat=[{binario},{ejeX}]
+    return dat;
 }
 
-
+// Funcion que trae los valores a graficar
 function traerValores(aux, A, f, df, faux) {
     var x = [];
     var y = [];
@@ -36,7 +36,83 @@ function traerValores(aux, A, f, df, faux) {
     return valores;
 }
 
+//Funcion que tae los datos a graficar en el espectro de frecuencias
+function datosEspectroFrecuencias(m,vp) {
+    
+    var fLaterales = getBessel(m, vp);// se traen los valores de bessel ya multiplicados por vp
+    //definicion de variables a utilizar
+    var datax = [];
+    var datay = [];
+    var auxdatay = []
+    var auxCol = [];
+    var coloresFm = [];
 
+    //Insercion de los valores del eje x
+    for (let i = fLaterales.length - 1; i >= 0; i--) {
+        datay.push(fLaterales[i])
+        if (i != 0) {
+            datax.push(i)
+        }
+    }
+    for (let i = 0; i < fLaterales.length; i++) {
+        datax.push(i);
+    }
+    //cambio de signo de la mitad del rreglo
+    señal = false;
+    for (let i = 0; i < datax.length; i++) {
+        if (datax[i] == 0) {
+            señal = true;
+        }
+        if (!señal) {
+            datax[i] = -datax[i];
+        }
+
+    }
+    //insercion de los colores aleatoris
+    for (let i = 0; i < datax.length; i++) {
+        if (datax[i] <= 0) {
+            auxCol.push(getRandomColor(auxCol));
+        }
+    }
+    //Arreglo de colores
+    var q = 0;
+    for (let i = datay.length - 1; i >= 0; i--) {
+        auxdatay[q] = datay[i];
+        coloresFm[q]=auxCol[i]
+        q++;
+    }
+    //Operaciones para combinar arreglos
+    datay.pop();
+    datay = datay.concat(auxdatay);
+    auxCol.pop();
+    coloresFm=auxCol.concat(coloresFm);
+    //Datos a retornan
+    valores = [{ datax }, { datay },{ coloresFm }]
+    return valores;
+}
+
+//LA funcion retorna un color diferente a los ya existentes
+function getRandomColor(coloresFm) {
+    var num = (Math.floor(Math.random() * 4) * 4).toString(16);
+    var letters = ['0', 'F', num];
+    var color = '#';
+
+    for (var i = 0; i < 3; i++) {
+        let pos = Math.floor(Math.random() * letters.length);
+        color += letters[pos];
+        letters.splice(pos, 1);
+
+    }
+    //para evitar que se repitan colores 
+    if (coloresFm.includes(color)) {
+        return getRandomColor(coloresFm);
+    } else {
+        return color;
+    }
+
+}
+
+// funcion que retoena las f laterales multiplicadas por una amplitud
 function getBessel(m,vc) {
     var J = [];
     for (let i = 0; i < 14; i++) {
@@ -48,6 +124,7 @@ function getBessel(m,vc) {
     return J;
 }
 
+// funcion que retoena las f laterales multiplicadas 
 function getBessel2(m) {
     var J = [];
     for (let i = 0; i < 14; i++) {
