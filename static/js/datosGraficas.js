@@ -102,7 +102,7 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
 }
 
 
-function traerdatosBPSK(cod,tb,fp) {
+function traerdatosBPSK(cod,tb,fp,fb) {
     var save=datosASK(cod,tb);
     // console.log(save,cod,tb,fp)
     var x = [];
@@ -118,7 +118,7 @@ function traerdatosBPSK(cod,tb,fp) {
             pru+=auxpru;
             b++
         }
-        c=Math.sin(2*Math.PI*fp*a)*Math.sin(2*Math.PI*a*save[b]);
+        c=save[b]*Math.sin(2*Math.PI*a*fp);
         x.push(a)
         y.push(c)
         a += 0.001;

@@ -173,8 +173,8 @@ function pintarGraficaSeñalModuladaFSK(cod,tb,Ap,fp,desviacion) {
     Plotly.newPlot('graficaModuladaFSK', data, layout);
 }
 
-function pintarGraficaSeñalModuladaBPSK(cod,tb,fp) {
-    var save = traerdatosBPSK(cod,tb,fp)
+function pintarGraficaSeñalModuladaBPSK(cod,tb,fp,fb) {
+    var save = traerdatosBPSK(cod,tb,fp,fb)
   console.log(save)
     var datos = {
         x: save[0].x,
