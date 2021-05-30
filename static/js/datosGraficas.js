@@ -77,7 +77,6 @@ function traerdatosASK(cod,tb,Ap,fp) {
 }
 
 function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
-    console.log(cod,tb,Ap,fp,desviacion)
     var save=datosASK(cod,tb);
     var x = [];
     var y = [];
@@ -101,6 +100,34 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
     console.log(valores)
     return valores;
 }
+
+
+function traerdatosBPSK(cod,tb,fp) {
+    var save=datosASK(cod,tb);
+    var x = [];
+    var y = [];
+    a = 0;
+    b=0;
+    len=7000;
+    pru=len/save.length;
+    auxpru=pru;
+    console.log(save.length)
+    for (let i = 0; i < len; i++) {
+        if (i==pru) {
+            pru+=auxpru;
+            b++
+        }
+        c=save[b]*Math.sin(2*Math.pi*fp*a);
+        x.push(a)
+        y.push(c)
+        a += 0.001;
+    }
+    valores = [{ x }, { y }]
+    console.log(valores)
+    return valores;
+}
+
+
 
 //Funcion que tae los datos a graficar en el espectro de frecuencias
 function datosEspectroFrecuencias(m,vp) {
