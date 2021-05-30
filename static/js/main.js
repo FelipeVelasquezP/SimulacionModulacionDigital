@@ -1,4 +1,5 @@
 pintarGraficaAscci("e",0.0016)
-pintarGraficaPortadora(25, 3)
+pintarGraficaPortadora(25, 7)
 pintarEspectroFrecuencias(5, 25)
-pintarGraficaSeñalModuladaASK("e",25,3,0.0016)
+pintarGraficaSeñalModuladaASK("e",25,7,0.0016)
+pintarGraficaSeñalModuladaFSK("e",0.0016,25,7,3.5)

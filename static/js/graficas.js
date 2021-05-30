@@ -144,8 +144,34 @@ function pintarGraficaSeñalModuladaASK(cod,Ap,fp,tb) {
     Plotly.newPlot('graficaModuladaASK', data, layout);
 }
 
-function pintarGraficaSeñalModuladaFSK() {
-    
+function pintarGraficaSeñalModuladaFSK(cod,tb,Ap,fp,desviacion) {
+    var save = traerdatosFSK(cod,tb,Ap,fp,desviacion)
+
+    var datos = {
+        x: save[0].x,
+        y: save[1].y,
+        mode: 'lines'
+    };
+    var data = [datos];
+    var layout = {
+        title: 'Señal Modulada en FSK',
+        xaxis: {
+            title: 'Tiempo [s]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            },
+            rangemode: 'tozero'
+        },
+        yaxis: {
+            title: 'Vc [V]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            }
+        }
+    };
+    Plotly.newPlot('graficaModuladaFSK', data, layout);
 }
 
 function pintarGraficaSeñalModuladaBPSK() {
