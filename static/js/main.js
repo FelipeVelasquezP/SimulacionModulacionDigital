@@ -23,6 +23,8 @@ $("#btn-calcular").click(function() {
         pintarGraficaSeñalModuladaFSK(ascii,timepoBit,amplitud,frecuencia,desviacion)
         pintarGraficaSeñalModuladaBPSK(ascii,timepoBit,frecuencia)
         pintarGraficaSeñalModuladaQPSK(ascii,frecuencia,bit)
+        pintarDiagramaConstelacionBPSK(ascii,timepoBit)
+        pintarDiagramaConstelacionQPSK(ascii,timepoBit)
     } else {
         Swal.fire({
             icon: 'error',

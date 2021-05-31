@@ -233,23 +233,23 @@ function pintarGraficaSeñalModuladaQPSK(cod,fp,fb) {
 
 function pintarDiagramaConstelacionBPSK(cod,tb) {
     var save= datosASK(cod,tb);
-    vu=[];
-    vc=[];
+    var vu=[];
+    var vc=[];
+    
     for (let i = 0; i < save.length; i++) {
-        if (save[i]) {
+        if (save[i]==1) {
           vu.push(1)  
         }else{
             vc.push(-1)
         }
     }
-    console.log(vu,vc)
     var trace1 = {
         x: vu,
         y: [0,0,0,0,0,0,0,0],
         mode: 'markers',
         type: 'scatter',
-        name: 'Team A',
-        text: ['A-1'],
+        name: '-sen(wc*t)',
+        text: ['180°','180°','180°','180°','180°','180°','180°','180°'],
         marker: { size: 12 }
       };
       
@@ -258,26 +258,85 @@ function pintarDiagramaConstelacionBPSK(cod,tb) {
         y: [0,0,0,0,0,0,0,0],
         mode: 'markers',
         type: 'scatter',
-        name: 'Team B',
-        text: ['B-a'],
+        name: 'sen(wc*t)',
+        text: ['0°','0°','0°','0°','0°','0°','0°','0°'],
         marker: { size: 12 }
       };
       
       var data = [ trace1,trace2];
       
       var layout = {
-        xaxis: {
-        //   range: [ 0.75, 5.25 ]
-        },
-        yaxis: {
-        //   range: [0, 8]
-        },
         title:'Diagrama de Constelación BPSK'
       };
       
       Plotly.newPlot('constBPSK', data, layout);
 }
 
-function pintarDiagramaConstelacionQPSK() {
-    
+function pintarDiagramaConstelacionQPSK(cod,tb) {
+    var save= datosASK(cod,tb);
+    var vpos=[{x:null,y:null}];
+    var vneg=[{x:null,y:null}];
+    var vposneg=[{x:null,y:null}];
+    var vnegpos=[{x:null,y:null}];
+    console.log(save)
+    for (let i = 0; i < save.length-1; i++) {
+        if (save[i]==-1 && save[i+1]==-1) {
+            vneg[0]={x:-1,y:-1}
+        } else if(save[i]==-1 && save[i+1]==1){
+            vnegpos[0]={x:1,y:-1}
+        }else if (save[i]==1 && save[i+1]==-1) {
+            vposneg[0]={x:-1,y:1}
+        }else{
+            vpos[0]={x:1,y:1}
+        }
+        i++;
+    }
+    console.log(vneg[0].x)
+    var trace1 = {
+        x: [vneg[0].x],
+        y: [vneg[0].y],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'sen(wc*t-135°)',
+        text: ['00'],
+        marker: { size: 12 }
+      };
+      
+      var trace2 = {
+        x: [vpos[0].x],
+        y: [vpos[0].y],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'sen(wc*t+45°)',
+        text: ['11'],
+        marker: { size: 12 }
+      };
+
+      var trace3 = {
+        x: [vposneg[0].x],
+        y: [vposneg[0].y],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'sen(wc*t+135°)',
+        text: ['10'],
+        marker: { size: 12 }
+      };
+
+      var trace4 = {
+        x: [vnegpos[0].x],
+        y: [vnegpos[0].y],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'sen(wc*t-45°)',
+        text: ['01'],
+        marker: { size: 12 }
+      };
+      
+      var data = [ trace1,trace2,trace3,trace4];
+      
+      var layout = {
+        title:'Diagrama de Constelación BPSK'
+      };
+      
+      Plotly.newPlot('constQPSK', data, layout);
 }
