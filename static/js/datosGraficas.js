@@ -65,7 +65,7 @@ function traerdatosASK(cod,tb,Ap,fp) {
     var y = [];
     a = 0;
     b=0;
-    len=7000;
+    len=8000;
     pru=len/save.length;
     auxpru=pru;
     for (let i = 0; i < len; i++) {
@@ -88,7 +88,7 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
     var y = [];
     a = 0;
     b=0;
-    len=7000;
+    len=8000;
     pru=len/save.length;
     auxpru=pru;
     for (let i = 0; i < len; i++) {
@@ -106,13 +106,15 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
 }
 
 
+
+
 function traerdatosBPSK(cod,tb,fp) {
     var save=datosASK(cod,tb);
     var x = [];
     var y = [];
     a = 0;
     b=0;
-    len=7000;
+    len=8000;
     pru=len/save.length;
     auxpru=pru;
     for (let i = 0; i < len; i++) {
@@ -126,30 +128,7 @@ function traerdatosBPSK(cod,tb,fp) {
         a += 0.001;
     }
     valores = [{ x }, { y }]
-    return valores;
-}
-
-
-function traerdatosBPSK(cod,tb,fp) {
-    var save=datosASK(cod,tb);
-    var x = [];
-    var y = [];
-    a = 0;
-    b=0;
-    len=7000;
-    pru=len/save.length;
-    auxpru=pru;
-    for (let i = 0; i < len; i++) {
-        if (i==pru) {
-            pru+=auxpru;
-            b++
-        }
-        c=save[b]*Math.sin(2*Math.PI*a*fp);
-        x.push(a)
-        y.push(c)
-        a += 0.001;
-    }
-    valores = [{ x }, { y }]
+    console.log(valores)
     return valores;
 }
 
@@ -161,20 +140,35 @@ function traerdatosQPSK(cod,fp,tb) {
     var y = [];
     a = 0;
     b=0;
-    len=7000;
-    pru=len/save.length;
+    fase=0;
+    len=4000;
+    pru=1000;
     auxpru=pru;
+    // var pbin=[save[0],save[2],save[4],save[6]];
+    // var sbin=[save[1],save[3],save[5],save[7]];
+    // console.log(save,pbin,sbin)
     for (let i = 0; i < len; i++) {
         if (i==pru) {
             pru+=auxpru;
-            b++
+            b+=2;
+            console.log(b,b+1,i)
         }
-        c=Math.sin(2*Math.PI*a*(tb/4))*Math.sin(2*Math.PI*a*fp)*save[b];
+        if (save[b]==0 && save[b+1]==0) {
+            fase=(-3/4)*Math.PI;
+        } else if(save[b]==0 && save[b+1]==1){
+            fase=(-1/4)*Math.PI;
+        }else if (save[b]==1 && save[b+1]==0) {
+            fase=(3/4)*Math.PI;
+        }else if (save[b]==1 && save[b+1]==1) {
+            fase=(1/4)*Math.PI;
+        }
+        c=Math.sin(2*Math.PI*a*fp+fase)*save[b]+Math.cos(2*Math.PI*a*fp+fase)*save[b+1];
         x.push(a)
         y.push(c)
         a += 0.001;
     }
     valores = [{ x }, { y }]
+    console.log(valores)
     return valores;
 }
 
