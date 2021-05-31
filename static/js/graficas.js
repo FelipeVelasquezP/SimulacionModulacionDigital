@@ -173,9 +173,8 @@ function pintarGraficaSeñalModuladaFSK(cod,tb,Ap,fp,desviacion) {
     Plotly.newPlot('graficaModuladaFSK', data, layout);
 }
 
-function pintarGraficaSeñalModuladaBPSK(cod,tb,fp,fb) {
-    var save = traerdatosBPSK(cod,tb,fp,fb)
-  console.log(save)
+function pintarGraficaSeñalModuladaBPSK(cod,tb,fp) {
+    var save = traerdatosBPSK(cod,tb,fp)
     var datos = {
         x: save[0].x,
         y: save[1].y,
@@ -203,8 +202,33 @@ function pintarGraficaSeñalModuladaBPSK(cod,tb,fp,fb) {
     Plotly.newPlot('graficaModuladaBPSK', data, layout);
 }
 
-function pintarGraficaSeñalModuladaQPSK() {
-    
+function pintarGraficaSeñalModuladaQPSK(cod,tb,fp,fb) {
+    var save = traerdatosQPSK(cod,tb,fp,fb)
+    var datos = {
+        x: save[0].x,
+        y: save[1].y,
+        mode: 'lines'
+    };
+    var data = [datos];
+    var layout = {
+        title: 'Señal Modulada en BPSK',
+        xaxis: {
+            title: 'Tiempo [s]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            },
+            rangemode: 'tozero'
+        },
+        yaxis: {
+            title: 'Vc [V]',
+            titlefont: {
+                color: 'black',
+                size: 12
+            }
+        }
+    };
+    Plotly.newPlot('graficaModuladaQPSK', data, layout);
 }
 
 function pintarDiagramaConstelacionBPSK() {

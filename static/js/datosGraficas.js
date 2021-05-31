@@ -102,7 +102,7 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
 }
 
 
-function traerdatosBPSK(cod,tb,fp,fb) {
+function traerdatosBPSK(cod,tb,fp) {
     var save=datosASK(cod,tb);
     // console.log(save,cod,tb,fp)
     var x = [];
@@ -128,6 +128,59 @@ function traerdatosBPSK(cod,tb,fp,fb) {
     return valores;
 }
 
+
+function traerdatosBPSK(cod,tb,fp) {
+    var save=datosASK(cod,tb);
+    // console.log(save,cod,tb,fp)
+    var x = [];
+    var y = [];
+    a = 0;
+    b=0;
+    len=7000;
+    pru=len/save.length;
+    auxpru=pru;
+    console.log(save.length)
+    for (let i = 0; i < len; i++) {
+        if (i==pru) {
+            pru+=auxpru;
+            b++
+        }
+        c=save[b]*Math.sin(2*Math.PI*a*fp);
+        x.push(a)
+        y.push(c)
+        a += 0.001;
+    }
+    valores = [{ x }, { y }]
+    console.log(valores)
+    return valores;
+}
+
+
+
+function traerdatosQPSK(cod,tb,fp,fb) {
+    var save=datosASK(cod,tb);
+    var x = [];
+    var y = [];
+    a = 0;
+    b=0;
+    len=7000;
+    pru=len/save.length;
+    auxpru=pru;
+    console.log(save.length)
+    for (let i = 0; i < len; i++) {
+        if (i==pru) {
+            pru+=auxpru;
+            b++
+        }
+        c=Math.sin(2*Math.PI*a*(fb/4))*Math.sin(2*Math.PI*a*fp)*save[b];
+        x.push(a)
+        y.push(c)
+        a += 0.001;
+    }
+    valores = [{ x }, { y }]
+    console.log(valores)
+    return valores;
+}
 
 
 //Funcion que tae los datos a graficar en el espectro de frecuencias
