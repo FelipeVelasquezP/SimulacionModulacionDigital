@@ -231,8 +231,51 @@ function pintarGraficaSeñalModuladaQPSK(cod,fp,fb) {
     Plotly.newPlot('graficaModuladaQPSK', data, layout);
 }
 
-function pintarDiagramaConstelacionBPSK() {
-    
+function pintarDiagramaConstelacionBPSK(cod,tb) {
+    var save= datosASK(cod,tb);
+    vu=[];
+    vc=[];
+    for (let i = 0; i < save.length; i++) {
+        if (save[i]) {
+          vu.push(1)  
+        }else{
+            vc.push(-1)
+        }
+    }
+    console.log(vu,vc)
+    var trace1 = {
+        x: vu,
+        y: [0,0,0,0,0,0,0,0],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Team A',
+        text: ['A-1'],
+        marker: { size: 12 }
+      };
+      
+      var trace2 = {
+        x: vc,
+        y: [0,0,0,0,0,0,0,0],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Team B',
+        text: ['B-a'],
+        marker: { size: 12 }
+      };
+      
+      var data = [ trace1,trace2];
+      
+      var layout = {
+        xaxis: {
+        //   range: [ 0.75, 5.25 ]
+        },
+        yaxis: {
+        //   range: [0, 8]
+        },
+        title:'Diagrama de Constelación BPSK'
+      };
+      
+      Plotly.newPlot('constBPSK', data, layout);
 }
 
 function pintarDiagramaConstelacionQPSK() {
