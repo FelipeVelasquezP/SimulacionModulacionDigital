@@ -88,7 +88,7 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
     var y = [];
     a = 0;
     b=0;
-    len=8000;
+    len=4000;
     pru=len/save.length;
     auxpru=pru;
     for (let i = 0; i < len; i++) {

@@ -1,8 +1,35 @@
-pintarGraficaAscci("e",0.0016)
-pintarGraficaPortadora(25, 3)
-pintarEspectroFrecuencias(8, 25)
-pintarGraficaSeñalModuladaASK("e",25,3,0.0016)
-pintarGraficaSeñalModuladaFSK("e",0.0016,25,3,3.5)
-pintarGraficaSeñalModuladaBPSK("e",0.0016,3)
-pintarGraficaSeñalModuladaQPSK("e",3,2)
-pintarDiagramaConstelacionBPSK("e",0.0016)
+// Captura de inputs
+$("#btn-calcular").click(function() {
+    window.location.href='#AA';
+    const amplitud = parseFloat($("#amplitud").val())
+    const frecuencia = parseFloat($("#fc").val())
+    const ascii = ($("#asc").val())
+    const bit = parseFloat($("#bit").val())
+    const sensibilidad = parseFloat($("#sens").val())
+    if (amplitud && frecuencia && ascii && bit && sensibilidad) {
+        // Cálculos uniformes
+        let desviacion=getDesviacion(sensibilidad, amplitud)
+        //Sesinsibilidad es un input
+        getfMarca(frecuencia, sensibilidad)
+        getfEspacio(frecuencia, sensibilidad)
+        let indice=getIndiceMod(getfMarca(frecuencia, sensibilidad),getfEspacio(frecuencia, sensibilidad),bit)
+        let timepoBit=getTiempoBit(bit);
+        // Gráficas
+        console.log(timepoBit)
+        pintarGraficaAscci(ascii,timepoBit)
+        pintarGraficaPortadora(amplitud, frecuencia)
+        pintarEspectroFrecuencias(indice, amplitud)
+        pintarGraficaSeñalModuladaASK(ascii,amplitud,frecuencia,timepoBit)
+        pintarGraficaSeñalModuladaFSK(ascii,timepoBit,amplitud,frecuencia,desviacion)
+        pintarGraficaSeñalModuladaBPSK(ascii,timepoBit,frecuencia)
+        pintarGraficaSeñalModuladaQPSK(ascii,frecuencia,bit)
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Completa todos los campos',
+          })
+    }
+})
+
+
