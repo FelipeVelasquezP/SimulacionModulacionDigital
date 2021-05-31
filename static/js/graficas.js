@@ -202,8 +202,8 @@ function pintarGraficaSeñalModuladaBPSK(cod,tb,fp) {
     Plotly.newPlot('graficaModuladaBPSK', data, layout);
 }
 
-function pintarGraficaSeñalModuladaQPSK(cod,tb,fp,fb) {
-    var save = traerdatosQPSK(cod,tb,fp,fb)
+function pintarGraficaSeñalModuladaQPSK(cod,fp,fb) {
+    var save = traerdatosQPSK(cod,fp,getTiempoBit(fb))
     var datos = {
         x: save[0].x,
         y: save[1].y,
@@ -211,7 +211,7 @@ function pintarGraficaSeñalModuladaQPSK(cod,tb,fp,fb) {
     };
     var data = [datos];
     var layout = {
-        title: 'Señal Modulada en BPSK',
+        title: 'Señal Modulada en QPSK',
         xaxis: {
             title: 'Tiempo [s]',
             titlefont: {
