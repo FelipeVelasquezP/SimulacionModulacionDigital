@@ -39,6 +39,6 @@ function getDesviacion(sensibilidad, amplitud) {
 }
 //Funcion que retorna el Indice de Modulación
 function getIndiceMod(fMarca, fEspacio, bit) {
-    return Math.abs((fMarca - fEspacio)/bit)
+    return Math.abs((fMarca - fEspacio)/getTiempoBit(bit))
 }
 
