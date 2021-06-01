@@ -60,16 +60,17 @@ function datosASK(cod,tb) {
 
 
 function traerdatosASK(cod,tb,Ap,fp) {
+    console.log(cod,tb,Ap,fp)
     var save=datosASK(cod,tb);
     var x = [];
     var y = [];
     a = 0;
     b=0;
-    len=8000;
+    len=tb*8000;
     pru=len/save.length;
     auxpru=pru;
-    for (let i = 0; i < len; i++) {
-        if (i==pru) {
+    for (let i = 0; i < parseInt(len); i++) {
+        if (i==parseInt(pru)) {
             pru+=auxpru;
             b++
         }
@@ -79,6 +80,7 @@ function traerdatosASK(cod,tb,Ap,fp) {
         a += 0.001;
     }
     valores = [{ x }, { y }]
+    console.log(valores)
     return valores;
 }
 
@@ -88,13 +90,14 @@ function traerdatosFSK(cod,tb,Ap,fp,desviacion) {
     var y = [];
     a = 0;
     b=0;
-    len=4000;
+    len=8000*tb;
     pru=len/save.length;
     auxpru=pru;
-    for (let i = 0; i < len; i++) {
-        if (i==pru) {
+    for (let i = 0; i < parseInt(len); i++) {
+        if (i==parseInt(pru)) {
             pru+=auxpru;
             b++
+            console.log(a)
         }
         c=Ap*Math.cos(2*Math.PI*(fp+save[b]*desviacion)*a);
         x.push(a)
@@ -114,11 +117,11 @@ function traerdatosBPSK(cod,tb,fp) {
     var y = [];
     a = 0;
     b=0;
-    len=8000;
+    len=8000*tb;
     pru=len/save.length;
     auxpru=pru;
-    for (let i = 0; i < len; i++) {
-        if (i==pru) {
+    for (let i = 0; i < parseInt(len); i++) {
+        if (i==parseInt(pru)) {
             pru+=auxpru;
             b++
         }
@@ -139,11 +142,11 @@ function traerdatosQPSK(cod,fp,tb) {
     var y = [];
     a = 0;
     b=0;
-    len=4000;
-    pru=1000;
+    len=4000*tb;
+    pru=len/4;
     auxpru=pru;
-    for (let i = 0; i < len; i++) {
-        if (i==pru) {
+    for (let i = 0; i < parseInt(len); i++) {
+        if (i==parseInt(pru)) {
             pru+=auxpru;
             b+=2;
         }
