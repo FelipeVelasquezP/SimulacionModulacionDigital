@@ -18,7 +18,7 @@
 <body>
     <h1 class="title" id="AA">Modulación Digital</h1>
     <!-- Seccion donde se piden los datos correspondientes -->
-    <section class="inputs">
+    <section class="inputs" id="in-data">
       <div class="row">
         <div class="col-6 line">
           <div class="box-1">
@@ -75,18 +75,62 @@
         </div>
       </div>
       <div class="row">
-        <button type="button" class="btn btn-primary" id="btn-calcular"  >Calcular</button>
+        <button type="button" class="btn btn-primary" id="btn-calcular">Calcular</button>
+      </div>
+    </section>
+    <!-- Resultados de los cálculos -->
+    <section class="inputs" id="resultados">
+      <!-- Datos ingresados -->
+      <div class="row">
+        <h2 class="hide">Datos Ingresados</h2>
+        <div class="col box-1" id="data-in"></div>
+      </div>
+      <div class="row">
+        <h2 class="hide">Resultados</h2>
+        <div class="col-sm">
+          <div id="desviacion" class="box-1">
+            <h6><b>Desviación máxima de frecuencia</b></h6>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div id="sensibilidad" class="box-1">
+            <h6><b>Sensibilidad a la desviación</b></h6>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div id="indice" class="box-1">
+            <h6><b>Índice de modulación</b></h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="marca" class="box-1">
+            <h6><b>Frecuencia de marca</b></h6>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div id="espacio" class="box-1">
+            <h6><b>Frecuencia de espacio</b></h6>
+          </div>
+        </div>
+        <div class="col-sm">
+          <!-- Reservado para @Felipe -->
+        </div>
       </div>
     <!-- Graficación de resultados -->
-        <div id="graficaAssci"></div>
-        <div id="graficaPortadora"></div>
-        <div id="espectroFrecuencias"></div>  
-        <div id="graficaModuladaASK"> </div>
-        <div id="graficaModuladaFSK"> </div>
-        <div id="graficaModuladaBPSK"> </div>
-        <div id="constBPSK"></div>
-        <div id="graficaModuladaQPSK"> </div>
-        <div id="constQPSK"></div>
+    <div id="graficaPortadora"></div>
+    <div id="espectroFrecuencias"></div>  
+    <div id="graficaAssci"></div>
+    <div id="graficaModuladaASK"> </div>
+    <div id="graficaModuladaFSK"> </div>
+    <div id="graficaModuladaBPSK"> </div>
+    <div id="constBPSK"></div>
+    <div id="graficaModuladaQPSK"> </div>
+    <div id="constQPSK"></div>
+      <div class="row">
+        <button type="button" class="btn btn-primary" style="display: none;" id="btn-new">Nuevo cálculo</button>
+      </div>
     </section>
     <footer>
         Luis Felipe Velasquez - Andrés Camilo López
