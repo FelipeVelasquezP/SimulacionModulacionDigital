@@ -20,13 +20,13 @@ function getAnchoBandaMinimoASK_BPSK(Fb) {
 }
 
 //Funcion que retorna el ancho de manda minimo para FSK
-function getAnchoBandaMinimoFSK(Fb,Fm,Fs) {
-    B=2*Fb*((Fm-Fs)/2)
+function getAnchoBandaMinimoFSK(Fb,des) {
+    B=2*(Fb+des)
     return B;
 }
 
 //Funcion que retorna el ancho de manda minimo para QPSK
-function getAnchoBandaMinimoASK_BPSK(Fb) {
+function getAnchoBandaMinimoQPSK(Fb) {
     B=Fb/2
     return B;
 }

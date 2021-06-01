@@ -35,6 +35,13 @@ $("#btn-calcular").click(function() {
         let indice  = getIndiceMod(marca,espacio,bit)
         $("#indice").append("<i>m = </i>" + indice)
         let timepoBit = getTiempoBit(bit);
+        $("#tiempoBit").append("<i>t = </i>" + timepoBit+" s")
+        $("#BASK").append("<i>B = </i>" + bit+" Hz")
+        $("#BBPSK").append("<i>B = </i>" + bit+" Hz")
+        let B_FSk= getAnchoBandaMinimoFSK(bit,desviacion);
+        $("#BFSK").append("<i>B = </i>" + B_FSk+" Hz")
+        let B_QPSK=getAnchoBandaMinimoQPSK(bit);
+        $("#BQPSK").append("<i>B = </i>" + B_QPSK+" Hz")
         // Gráficas
         console.log(timepoBit)
         pintarGraficaAscci(ascii,timepoBit)
@@ -44,6 +51,8 @@ $("#btn-calcular").click(function() {
         pintarGraficaSeñalModuladaFSK(ascii,timepoBit,amplitud,frecuencia,desviacion)
         pintarGraficaSeñalModuladaBPSK(ascii,timepoBit,frecuencia)
         pintarGraficaSeñalModuladaQPSK(ascii,frecuencia,bit)
+        pintarDiagramaConstelacionQPSK(ascii,timepoBit)
+        pintarDiagramaConstelacionBPSK(ascii,timepoBit)
         $("#btn-new").css("display", "block");
     } else {
         Swal.fire({

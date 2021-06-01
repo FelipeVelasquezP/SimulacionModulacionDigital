@@ -335,7 +335,7 @@ function pintarDiagramaConstelacionQPSK(cod,tb) {
       var data = [ trace1,trace2,trace3,trace4];
       
       var layout = {
-        title:'Diagrama de Constelación BPSK'
+        title:'Diagrama de Constelación QPSK'
       };
       
       Plotly.newPlot('constQPSK', data, layout);
