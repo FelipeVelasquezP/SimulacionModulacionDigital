@@ -1,13 +1,13 @@
-//El calculo de la frecuencia de bit no se realizao porque se pide en la vista
-
 //Frecuencia de Marca
 function getfMarca(frecuencia, sensibilidad) {
     return frecuencia-sensibilidad
 }
+
 //Frecuencia de Espacio
 function getfEspacio(frecuencia, sensibilidad) {
     return frecuencia+sensibilidad
 }
+
 //Funcion que retorna tb
 function getTiempoBit(Fb) {
     operacion=1/Fb;
@@ -33,10 +33,11 @@ function getAnchoBandaMinimoASK_BPSK(Fb) {
 
 // ==== Cálculos uniformes, los siguientes cálculos semntienen para los 4 tipos de modulación ====
 
-// Desviación máxima de frecuencia
+//Funcion que retorna la Desviación máxima de frecuencia
 function getDesviacion(sensibilidad, amplitud) {
     return sensibilidad*amplitud
 }
+//Funcion que retorna el Indice de Modulación
 function getIndiceMod(fMarca, fEspacio, bit) {
     return Math.abs((fMarca - fEspacio)/bit)
 }
