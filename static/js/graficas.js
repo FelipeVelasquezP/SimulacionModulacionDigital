@@ -15,7 +15,7 @@ function pintarGraficaAscci(cod,tb) {
     };
     var data = [traceHVH];
     var layout = {
-        title: 'Diagrama de Pulsos del codigo ASSCI',
+        title: 'Diagrama de Pulsos del codigo ASCII',
         xaxis: {
             title: 'Tiempo[s]',
             titlefont: {
