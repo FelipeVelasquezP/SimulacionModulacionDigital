@@ -1,0 +1,123 @@
+/* html{
+    background: linear-gradient(to right, rgb(109, 109, 245), rgb(95, 223, 255));
+} */
+::-webkit-scrollbar {
+    display: none;
+}
+.inputs{
+    /* border: 1px solid green; */
+    background-color: white;
+    border-radius: 10px;
+    margin: 2% auto 5%;
+    padding: 2% 3%;
+    width: 90%;
+    /* border-radius: 50px;
+    box-shadow:  20px 20px 60px #c5c5c5,
+                -20px -20px 60px #ffffff; */
+}
+.brd, #brd{
+    border: 1px solid green !important;
+}
+.title{
+    /* border: 1px solid green; */
+    margin-top: 5%;
+    text-align: center;
+}
+h2{
+    font-size: 20px;
+    margin-bottom: 3%;
+    text-align: center;
+}
+h3{
+    font-size: 16px;
+    margin: 2% 0 !important;
+}
+#btn-calcular, #btn-new{
+    margin: 5% auto 2%;
+    width: 30%;
+}
+.box-1{
+    border-radius: 10px;
+    padding: 5% 3%;
+}
+.br{
+    margin-bottom: 3%;
+}
+.hod:hover {
+    transform: scale(1.1);
+    transition: .2s;
+        z-index: 1000;
+  }
+
+.box-1{
+    border-radius: 18px;
+    /* background: #e0e0e0; */
+    box-shadow:  -5px 5px 20px #d1d1d1,
+                 5px -5px 20px #e9e9e9;
+}
+
+
+.space{
+    padding-bottom: 5%;
+}
+.cont{
+    float: left;
+    padding: 0% 1%;
+    text-align: center;
+}
+.center{
+    margin: 0 auto;
+    padding: 0  10%;
+    /* width: 90%; */
+}
+#calculosSection{
+    border: solid 2px rgb(194, 194, 194);
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+}
+.calculos{
+    margin: 5% 5% 2%;
+    text-align: left;
+}
+.resultados{
+    font-size: 25px;
+    margin: 0 auto 5%;
+    max-width: 90%;
+    padding-top: 5%;
+}
+#data-in{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3%;
+    padding: 2% 0;
+}
+.txt{
+    font-size: 20px;
+    padding: 0 2%;
+}
+.col-sm{
+    margin-bottom: 3%;
+}
+.col-sm .box-1 {
+    padding-left: 7%;
+}
+.hide{
+    font-size: 25px;
+}
+footer{
+    color: gray;
+    font-size: 12px;
+    font-style: italic;
+    padding: 1% 1%;
+    text-align: center;
+}
+@media (max-width: 995px) { 
+    #calculosSection{
+        /* border: 1px solid yellow; */
+        padding-bottom: 2%;
+        overflow: hidden;
+        text-align: center;
+    }
+}
