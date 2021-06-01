@@ -1,3 +1,4 @@
+document.oncontextmenu = function(){return false;}
 $(document).ready(function(){
     $("#data-in").css("display", "none");
     $("#resultados").css("display", "none");
