@@ -33,10 +33,10 @@ $("#btn-calcular").click(function() {
         $("#marca").append("<i>Fm = </i>"+ marca + " Hz")
         let espacio = getfEspacio(frecuencia, sensibilidad)
         $("#espacio").append("<i>Fs = </i>" + espacio + " Hz")
-        let indice  = getIndiceMod(marca,espacio,bit)
+        let indice  = getIndiceMod(desviacion,bit)
         $("#indice").append("<i>m = </i>" + indice)
         let timepoBit = getTiempoBit(bit);
-        $("#tiempoBit").append("<i>t = </i>" + timepoBit+" s")
+        $("#tiempoBit").append("<i>fb = </i>" + timepoBit+" bps")
         $("#BASK").append("<i>B = </i>" + bit+" Hz")
         $("#BBPSK").append("<i>B = </i>" + bit+" Hz")
         let B_FSk= getAnchoBandaMinimoFSK(bit,desviacion);
